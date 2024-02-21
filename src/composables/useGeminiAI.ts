@@ -32,14 +32,12 @@ export default function useGeminiAI() {
   }
 
   async function talkToGemini(message: string): Promise<string> {
-    console.log("gemini message " + message);
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
     const chat = model.startChat();
     const prompt = message;
     const result = await chat.sendMessage(prompt);
     const response = await result.response;
     const text = response.text();
-    console.log("gemini response " + text);
 
     isTyping(false);
     addConversationLog(USER.GEMINI, text);

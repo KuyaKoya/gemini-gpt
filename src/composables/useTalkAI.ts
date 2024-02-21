@@ -22,8 +22,7 @@ export default function useTalkAI() {
 
   async function talk(ai: string, message: string) {
     iteration++;
-    console.log(ai + " is talking");
-    while (iteration < 5) {
+    while (iteration < 10) {
       if (ai === USER.OPENAI) {
         //call gemini
         talk(USER.GEMINI, await talkToGemini(message));

@@ -27,7 +27,6 @@ export default function useOpenAI() {
       .then((response) => response.data.value)
       .then((data: any) => {
         updateTypingStatus(USER.OPENAI, false);
-        console.log(data.choices[0].message);
         if (data.error != null) {
           addMessageList(USER.OPENAI, data.error.message);
         } else {
@@ -38,7 +37,6 @@ export default function useOpenAI() {
   }
 
   async function talkToOpenAI(message: string): Promise<string> {
-    console.log("openai message" + message);
     const response = useFetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -52,7 +50,6 @@ export default function useOpenAI() {
       .then((response) => response.data.value)
       .then((data: any) => {
         isTyping(false);
-        console.log(data.choices[0].message);
         if (data.error != null) {
           addConversationLog(USER.OPENAI, data.error.message);
           return data.error.message;
