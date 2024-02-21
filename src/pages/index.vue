@@ -1,8 +1,7 @@
 <template>
   <div class="chat-container">
     <div class="message-area">
-      <openai :messages="openAILogs" :isTyping="isOpenAITyping" />
-      <gemini :messages="geminiAILogs" :isTyping="isGeminiAITyping" />
+      <talk :messages="AILogs" :isTyping="isAITyping" />
     </div>
 
     <input
@@ -12,23 +11,16 @@
       v-model="newMessage"
       placeholder="Type your message..."
     />
-    <button type="submit" @click="submit()" @keyup.enter="submit()">
-      Send
-    </button>
+    <button type="submit" @click="submit" @keyup.enter="submit">Send</button>
   </div>
 </template>
 
 <script setup lang="ts">
-import useOpenAI from "../composables/useOpenAI";
-import useGeminiAI from "../composables/useGeminiAI";
-
-const { openAILogs, isOpenAITyping, submitOpenAI } = useOpenAI();
-const { geminiAILogs, isGeminiAITyping, submitGeminiAI } = useGeminiAI();
-const newMessage = ref("");
+const { AILogs, isAITyping, startTalking } = useTalkAI();
+const newMessage = ref("how is your day?");
 
 function submit() {
-  submitOpenAI(newMessage.value);
-  submitGeminiAI(newMessage.value);
+  startTalking(newMessage.value);
   newMessage.value = "";
 }
 </script>
