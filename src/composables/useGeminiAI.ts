@@ -32,6 +32,8 @@ export default function useGeminiAI() {
   }
 
   async function talkToGemini(message: string): Promise<string> {
+    const { $mdRenderer: mdRenderer } = useNuxtApp();
+    isTyping(true);
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
     const chat = model.startChat();
     const prompt = message;
@@ -40,7 +42,7 @@ export default function useGeminiAI() {
     const text = response.text();
 
     isTyping(false);
-    addConversationLog(USER.GEMINI, text);
+    addConversationLog(USER.GEMINI, mdRenderer.render(text));
     return text;
   }
 

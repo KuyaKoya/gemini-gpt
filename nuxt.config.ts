@@ -13,6 +13,9 @@ export default defineNuxtConfig({
   srcDir: "./src",
   devtools: { enabled: true },
   css: ["~/assets/app-view-styles.css"],
+  imports: {
+    dirs: ["./store/**", "./composables/**"],
+  },
   modules: ["@pinia/nuxt"],
   vite: {},
 });

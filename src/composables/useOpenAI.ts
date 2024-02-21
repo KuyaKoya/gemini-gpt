@@ -37,6 +37,9 @@ export default function useOpenAI() {
   }
 
   async function talkToOpenAI(message: string): Promise<string> {
+    isTyping(true);
+    const { $mdRenderer: mdRenderer } = useNuxtApp();
+
     const response = useFetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -55,7 +58,7 @@ export default function useOpenAI() {
           return data.error.message;
         } else {
           const formattedResponse = data.choices[0].message.content;
-          addConversationLog(USER.OPENAI, formattedResponse);
+          addConversationLog(USER.OPENAI, mdRenderer.render(formattedResponse));
           return formattedResponse;
         }
       });

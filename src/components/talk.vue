@@ -6,7 +6,7 @@
       class="bubble-container"
     >
       <div v-if="message.sender === USER.OPENAI" class="sender-bubble">
-        {{ message.content }}
+        <p v-html="message.content"></p>
       </div>
       <div v-else class="receiver-bubble">
         <p v-html="message.content"></p>

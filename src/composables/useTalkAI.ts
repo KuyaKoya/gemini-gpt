@@ -22,15 +22,13 @@ export default function useTalkAI() {
 
   async function talk(ai: string, message: string) {
     iteration++;
-    while (iteration < 10) {
-      if (ai === USER.OPENAI) {
-        //call gemini
-        talk(USER.GEMINI, await talkToGemini(message));
-      }
-      if (ai === USER.GEMINI) {
-        //call openai
-        talk(USER.OPENAI, await talkToOpenAI(message));
-      }
+    if (ai === USER.OPENAI) {
+      //call gemini
+      talk(USER.GEMINI, await talkToGemini(message));
+    }
+    if (ai === USER.GEMINI) {
+      //call openai
+      talk(USER.OPENAI, await talkToOpenAI(message));
     }
   }
 
