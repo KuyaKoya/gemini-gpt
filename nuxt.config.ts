@@ -24,4 +24,9 @@ export default defineNuxtConfig({
   primevue: {
     cssLayerOrder: "tailwind-base, primevue, tailwind-utilities",
   },
+  router: {
+    options: {
+      scrollBehaviorType: "smooth",
+    },
+  },
 });

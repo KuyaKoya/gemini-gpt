@@ -2,20 +2,22 @@
   <div
     class="flex bg-gradient-to-b from-black via-sky-800 to-sky-300 flex-col align-bottom justify-end h-screen overflow-y-hidden"
   >
-    <talk
-      :messages="AILogs"
-      :isTyping="isAITyping"
-      class="flex flex-col overflow-y-auto w-full justify-stretch"
-    />
+    <div class="overflow-y-auto">
+      <talk
+        :messages="AILogs"
+        class="flex flex-col-reverse w-full justify-stretch"
+      />
+      <TypingBubble :isTyping="isAITyping" class="justify-center" />
+    </div>
 
     <InputGroup class="p-4">
       <FloatLabel>
-        <Textarea
-          class="pl-2 pr-2 pt-2 rounded-s-md"
-          model="newMessage"
+        <InputText
+          class="pl-2 pr-2 rounded-s-md h-12"
+          v-model="newMessage"
           @keydown.enter="submit"
         />
-        <label>Start a topic...</label>
+        <label class="text-gray-700">Start a topic...</label>
       </FloatLabel>
       <Button class="bg-green-400" icon="pi pi-send" @click="submit" />
       <Button

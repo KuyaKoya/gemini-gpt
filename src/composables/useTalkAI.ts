@@ -27,14 +27,20 @@ export default function useTalkAI() {
 
   async function talk(ai: string, message: string) {
     iteration++;
+    // while (iteration < 6) {
+
+    // }
     if (ai === USER.OPENAI) {
+      isTyping(true);
       //call gemini
       talk(USER.GEMINI, await talkToGemini(message));
     }
     if (ai === USER.GEMINI) {
+      isTyping(true);
       //call openai
       talk(USER.OPENAI, await talkToOpenAI(message));
     }
+    isTyping(false);
   }
 
   return {

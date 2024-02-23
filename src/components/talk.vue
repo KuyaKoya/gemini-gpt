@@ -17,10 +17,9 @@
       </div>
     </div>
   </div>
-  <typing-bubble :isTyping="isTyping" />
 </template>
 
 <script setup>
 import { USER } from "~/enums/AI";
-defineProps(["messages", "isTyping"]);
+defineProps(["messages"]);
 </script>
