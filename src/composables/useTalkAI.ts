@@ -4,7 +4,12 @@ export default function useTalkAI() {
   const { talkToOpenAI } = useOpenAI();
   const { talkToGemini } = useGeminiAI();
   const { AILogs, isAITyping } = storeToRefs(useMessageStore());
-  const { isTyping, addConversationLog } = useMessageStore();
+  const {
+    isTyping,
+    addConversationLog,
+    saveToLocalStorage,
+    loadFromLocalStorage,
+  } = useMessageStore();
 
   let iteration = 0;
 
@@ -32,5 +37,11 @@ export default function useTalkAI() {
     }
   }
 
-  return { AILogs, isAITyping, startTalking };
+  return {
+    AILogs,
+    isAITyping,
+    startTalking,
+    saveToLocalStorage,
+    loadFromLocalStorage,
+  };
 }

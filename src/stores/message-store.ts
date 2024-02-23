@@ -62,6 +62,16 @@ export const useMessageStore = defineStore("message", () => {
     }
   }
 
+  function saveToLocalStorage() {
+    localStorage.setItem("AILogs", JSON.stringify(AILogs.value));
+  }
+
+  function loadFromLocalStorage() {
+    const data = localStorage.getItem("AILogs");
+    const logs = data ? JSON.parse(data) : [];
+    AILogs.value = logs;
+  }
+
   return {
     openAILogs,
     geminiAILogs,
@@ -73,5 +83,7 @@ export const useMessageStore = defineStore("message", () => {
     updateTypingStatus,
     addConversationLog,
     isTyping,
+    saveToLocalStorage,
+    loadFromLocalStorage,
   };
 });

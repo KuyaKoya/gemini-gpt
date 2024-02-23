@@ -1,5 +1,6 @@
 import { USER } from "~/enums/AI";
 import { useMessageStore } from "~/stores/message-store";
+import OpenAI from "openai";
 
 export default function useOpenAI() {
   const { openAILogs, isOpenAITyping } = storeToRefs(useMessageStore());
@@ -62,6 +63,28 @@ export default function useOpenAI() {
           return formattedResponse;
         }
       });
+
+    // const openai = new OpenAI({
+    //   apiKey: useRuntimeConfig().public.OPENAI_API_KEY,
+
+    //   dangerouslyAllowBrowser: true,
+    // });
+
+    // console.log(openai);
+
+    // let response = "";
+
+    // const stream = await openai.chat.completions.create({
+    //   model: "gpt-3.5-turbo",
+    //   messages: [{ role: "user", content: message }],
+    //   stream: true,
+    // });
+    // for await (const chunk of stream) {
+    //   response += chunk.choices[0]?.delta?.content || "";
+    // }
+
+    // isTyping(false);
+    // addConversationLog(USER.OPENAI, mdRenderer.render(response));
 
     return response;
   }
